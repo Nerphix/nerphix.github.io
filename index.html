@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maafaru International – 07 March 2026</title>
+    <title>Maafaru International – Schedule</title>
     <style>
-        /* ========== ALL STYLES DIRECTLY IN HEAD ========== */
+        /* ========== ALL STYLES HERE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -126,7 +126,6 @@
             border: 2px solid #1f4d5d;
             overflow-x: auto;
             margin: 20px 0;
-            display: block;
         }
 
         .desktop-table {
@@ -406,6 +405,15 @@
         .legend-future { background: #6c757d; opacity: 0.7; }
 
         /* Responsive */
+        @media (min-width: 1024px) {
+            .movement-list {
+                display: none;
+            }
+            .table-wrapper {
+                display: block;
+            }
+        }
+
         @media (max-width: 1023px) {
             .table-wrapper {
                 display: none;
@@ -422,11 +430,7 @@
         <div class="header-card">
             <div class="airport-name">Maafaru International Airport</div>
             <div class="badge-row" id="headerBadges">
-                <span class="badge">07 MARCH 2026</span>
-                <span class="badge orange">SATURDAY</span>
-                <span class="live-indicator">
-                    <span class="live-dot"></span> LIVE
-                </span>
+                <span class="badge">Loading...</span>
             </div>
             <div class="location">
                 <span>📍 VRDA – Maafaru, Maldives</span>
@@ -453,7 +457,7 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    <!-- Filled by JS -->
+                    <tr><td colspan="8">Loading schedule data...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -481,40 +485,66 @@
             <div class="legend-item"><span class="legend-color legend-landed"></span> LANDED (first 3hrs)</div>
             <div class="legend-item"><span class="legend-color legend-ongoing"></span> ONGOING (CRT→DEP)</div>
             <div class="legend-item"><span class="legend-color legend-departed"></span> DEPARTED/FINISHED</div>
-            <div class="legend-item"><span class="legend-color legend-future"></span> FUTURE (future date)</div>
+            <div class="legend-item"><span class="legend-color legend-future"></span> FUTURE</div>
         </div>
 
         <div class="footer" id="footer">
-            Maafaru International Airport (VRDA) · 07 March 2026 · Auto-refreshes every 30 seconds
+            Maafaru International Airport (VRDA)
         </div>
     </div>
 
     <script>
-        // ==================== MOVEMENTS DATA (EMBEDDED DIRECTLY) ====================
-        const movements = [
-            { reg: "RA73558", operator: "AVIA", arr: "08:45", dep: "", route: "UZSS – VRDA", pax: "13/00", crt: "" },
-            { reg: "TCALG", operator: "AVIA", arr: "", dep: "10:15", route: "UUWW – VRDA – OMAD", pax: "00/00", crt: "08:30" },
-            { reg: "CNGMT", operator: "AVIA", arr: "", dep: "11:00", route: "HELX – VRDA – HELX", pax: "00/03", crt: "08:30" },
-            { reg: "UPEM025", operator: "AVIA", arr: "", dep: "10:30", route: "UAAA – VRDA – OOMS", pax: "00/00", crt: "09:00" },
-            { reg: "OK-SIX", operator: "FSM", arr: "", dep: "", route: "Crew Aircraft Visit", pax: "—", crt: "09:30" },
-            { reg: "UPEM016", operator: "AVIA", arr: "", dep: "12:00", route: "UZTT – VRDA – UZTP", pax: "00/08", crt: "09:50" },
-            { reg: "DAIRI", operator: "AVIA", arr: "10:05", dep: "", route: "EBBR – VRDA", pax: "08/00", crt: "" },
-            { reg: "UPEM022", operator: "AVIA", arr: "", dep: "13:00", route: "UAAA – VRDA – UAAA", pax: "00/02", crt: "10:30" },
-            { reg: "VPCYW", operator: "AVIA", arr: "13:20", dep: "", route: "ZSSS – VRDA", pax: "07/00", crt: "" },
-            { reg: "TCTSS", operator: "AVIA", arr: "", dep: "14:30", route: "LIMJ – VRDA – VRMM", pax: "00/00", crt: "13:00" }
-        ];
-
-        const overnightParking = ["RA73558", "DAIRI", "VPCYW"];
+        // ==================== ALL JAVASCRIPT HERE ====================
         
-        const specialInstructions = [
-            "<strong>TCALG:</strong> AVIA Fuel / NOKU 08:30",
-            "<strong>UPEM025:</strong> JETEX / FINI PALACE 09:00",
-            "<strong>CNGMT:</strong> JETEX / SUNSIYAM 09:00 / NOKU 08:30",
-            "<strong>UPEM016:</strong> JETEX / VELAA 10:00 / FINI PALACE 09:50",
-            "<strong>UPEM022:</strong> JETEX / NOKU 10:30",
-            "<strong>TCTSS:</strong> UCIG / NOKU 13:00",
-            "<strong>OK-SIX:</strong> Aircraft visit / CRT 09:30"
-        ];
+        // ==================== LOAD DATA FROM JSON ====================
+        let movements = [];
+        let overnightParking = [];
+        let specialInstructions = [];
+        let scheduleInfo = {};
+
+        // Load the JSON file
+        fetch('data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load data.json');
+                }
+                return response.json();
+            })
+            .then(data => {
+                movements = data.movements;
+                overnightParking = data.overnightParking;
+                specialInstructions = data.specialInstructions;
+                scheduleInfo = data.schedule;
+                
+                // Update header with schedule info
+                updateHeader();
+                
+                // Initial render
+                render();
+                
+                // Auto-refresh every 30 seconds
+                setInterval(render, 30000);
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.getElementById('currentTimeDisplay').innerHTML = 
+                    '❌ Error loading schedule data. Make sure data.json exists.';
+                document.getElementById('tableBody').innerHTML = 
+                    '<tr><td colspan="8" style="color: red; text-align: center;">Failed to load data.json. Check console (F12) for details.</td></tr>';
+            });
+
+        function updateHeader() {
+            document.getElementById('headerBadges').innerHTML = `
+                <span class="badge">${scheduleInfo.date || 'Unknown'}</span>
+                <span class="badge orange">${scheduleInfo.day || 'Unknown'}</span>
+                <span class="live-indicator">
+                    <span class="live-dot"></span> LIVE
+                </span>
+            `;
+            
+            document.getElementById('footer').innerHTML = 
+                `Maafaru International Airport (VRDA) · ${scheduleInfo.footerDate || 'Schedule'} · Auto-refreshes every 30 seconds`;
+        }
 
         // ==================== TIME UTILITIES ====================
         function getCurrentMaldivesTime() {
@@ -550,67 +580,87 @@
             return hours * 60 + minutes;
         }
 
-        function getStatus(arr, dep, crt) {
-            const now = getCurrentMaldivesTime().totalMinutes;
+        // ==================== CORRECT SORTING FUNCTION ====================
+        function getEarliestTime(movement) {
+            const times = [];
             
-            // For 7 March 2026 schedule, since it's in the future, all show as FUTURE
-            // This is just for display - you can change this logic based on actual date
-            
-            const arrMin = arr ? timeToMinutes(arr) : null;
-            const depMin = dep ? timeToMinutes(dep) : null;
-            const crtMin = crt ? timeToMinutes(crt) : null;
-
-            // For demo purposes, let's show some variety based on time
-            // You can remove this when using real dates
-            if (now < 9 * 60) { // Before 09:00
-                if (arr === "08:45") return { text: "LANDED", class: "status-landed" };
-                if (crt === "08:30") return { text: "ONGOING", class: "status-ongoing" };
-            } else if (now < 10 * 60) { // 09:00-10:00
-                if (arr === "08:45") return { text: "LANDED", class: "status-landed" };
-                if (crt === "09:00" || crt === "09:30") return { text: "ONGOING", class: "status-ongoing" };
-                if (crt === "08:30") return { text: "DEPARTED", class: "status-departed" };
+            // Extract CRT time if it exists (handle "08:30 LT" format)
+            if (movement.crt && movement.crt !== "") {
+                const crtMatch = movement.crt.match(/(\d{2}:\d{2})/);
+                if (crtMatch) {
+                    times.push(timeToMinutes(crtMatch[1]));
+                }
             }
+            
+            // Add arrival time if exists
+            if (movement.arr && movement.arr !== "") {
+                times.push(timeToMinutes(movement.arr));
+            }
+            
+            // Add departure time if exists
+            if (movement.dep && movement.dep !== "") {
+                times.push(timeToMinutes(movement.dep));
+            }
+            
+            // Return the earliest time, or a very large number if no times
+            return times.length > 0 ? Math.min(...times) : 9999;
+        }
 
-            // Default: show as FUTURE
+        // ==================== STATUS FUNCTION ====================
+        function getStatus(arr, dep, crt) {
+            // For demo purposes, return FUTURE for all
+            // In production, this would compare with current time
             return { text: "FUTURE", class: "status-future" };
         }
 
-        // ==================== RENDER ====================
+        // ==================== RENDER FUNCTION ====================
         function render() {
             const currentTime = getCurrentMaldivesTime();
             document.getElementById('currentTimeDisplay').innerHTML = `🕐 Maldives Time: <strong>${currentTime.formatted}</strong>`;
 
-            // Table Body
             const tableBody = document.getElementById('tableBody');
             const movementList = document.getElementById('movementList');
             
             let arrivals = 0, departures = 0;
+            
+            // ===== CORRECT SORTING BY EARLIEST TIME =====
+            // This will sort regardless of the order in JSON
+            const sorted = [...movements].sort((a, b) => {
+                const timeA = getEarliestTime(a);
+                const timeB = getEarliestTime(b);
+                return timeA - timeB;
+            });
+
+            // Display sorted order in console for verification
+            console.log('=== SORTED MOVEMENTS ===');
+            sorted.forEach((m, index) => {
+                const earliest = getEarliestTime(m);
+                const hours = Math.floor(earliest / 60);
+                const mins = earliest % 60;
+                console.log(`${index + 1}. ${m.reg}: ${hours.toString().padStart(2,'0')}:${mins.toString().padStart(2,'0')} | CRT:${m.crt || '—'} ARR:${m.arr || '—'} DEP:${m.dep || '—'}`);
+            });
+
             let tableRows = '';
             let cardsHtml = '';
 
-            // Sort movements by time
-            const sorted = [...movements].sort((a, b) => {
-                const getTime = (m) => {
-                    if (m.arr) return timeToMinutes(m.arr);
-                    if (m.dep) return timeToMinutes(m.dep);
-                    if (m.crt) {
-                        const match = m.crt.match(/(\d{2}:\d{2})/);
-                        return match ? timeToMinutes(match[1]) : 0;
-                    }
-                    return 0;
-                };
-                return getTime(a) - getTime(b);
-            });
-
             sorted.forEach(m => {
-                if (m.arr && !m.dep) arrivals++;
-                else if (!m.arr && m.dep) departures++;
-                else if (m.arr && m.dep) { arrivals++; departures++; }
+                // Count arrivals and departures
+                if (m.arr && m.arr !== "" && (!m.dep || m.dep === "")) arrivals++;
+                else if (m.dep && m.dep !== "" && (!m.arr || m.arr === "")) departures++;
+                else if (m.arr && m.arr !== "" && m.dep && m.dep !== "") { 
+                    arrivals++; 
+                    departures++; 
+                }
 
                 const status = getStatus(m.arr, m.dep, m.crt);
                 
-                const displayTime = m.arr || m.dep || (m.crt ? m.crt.replace(' LT', '') : '—');
+                // Get display time (priority: arrival > departure > CRT)
+                let displayTime = '—';
+                if (m.arr && m.arr !== "") displayTime = m.arr;
+                else if (m.dep && m.dep !== "") displayTime = m.dep;
+                else if (m.crt && m.crt !== "") displayTime = m.crt.replace(' LT', '');
                 
+                // Get route display
                 let routeDisplay = m.route;
                 if (m.reg === "OK-SIX") {
                     routeDisplay = "Crew Aircraft Visit";
@@ -646,7 +696,7 @@
                                 <span class="detail-label">PAX</span>
                                 <span class="detail-value pax-chip">${m.pax}</span>
                             </div>
-                            ${m.crt ? `
+                            ${m.crt && m.crt !== "" ? `
                             <div class="detail-item">
                                 <span class="detail-label">CRT</span>
                                 <span class="detail-value crt-chip">${m.crt}</span>
@@ -673,12 +723,6 @@
             document.getElementById('parkingTags').innerHTML = overnightParking.map(t => `<span class="parking-tag">${t}</span>`).join('');
             document.getElementById('specialItems').innerHTML = specialInstructions.map(s => `<span class="special-item">${s}</span>`).join('');
         }
-
-        // Initial render
-        render();
-        
-        // Auto-refresh every 30 seconds
-        setInterval(render, 30000);
     </script>
 </body>
 </html>

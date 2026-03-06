@@ -1,0 +1,29 @@
+{
+  "schedule": {
+    "date": "07 MARCH 2026",
+    "day": "SATURDAY",
+    "footerDate": "07 March 2026"
+  },
+  "movements": [
+    { "reg": "RA73558", "operator": "AVIA", "arr": "08:45", "dep": "", "route": "UZSS – VRDA", "pax": "13/00", "crt": "" },
+    { "reg": "TCALG", "operator": "AVIA", "arr": "", "dep": "10:15", "route": "UUWW – VRDA – OMAD", "pax": "00/00", "crt": "08:30" },
+    { "reg": "CNGMT", "operator": "AVIA", "arr": "", "dep": "11:00", "route": "HELX – VRDA – HELX", "pax": "00/03", "crt": "08:30" },
+    { "reg": "UPEM025", "operator": "AVIA", "arr": "", "dep": "10:30", "route": "UAAA – VRDA – OOMS", "pax": "00/00", "crt": "09:00" },
+    { "reg": "OK-SIX", "operator": "FSM", "arr": "", "dep": "", "route": "Crew Aircraft Visit", "pax": "—", "crt": "09:30" },
+    { "reg": "UPEM016", "operator": "AVIA", "arr": "", "dep": "12:00", "route": "UZTT – VRDA – UZTP", "pax": "00/08", "crt": "09:50" },
+    { "reg": "DAIRI", "operator": "AVIA", "arr": "10:05", "dep": "", "route": "EBBR – VRDA", "pax": "08/00", "crt": "" },
+    { "reg": "UPEM022", "operator": "AVIA", "arr": "", "dep": "13:00", "route": "UAAA – VRDA – UAAA", "pax": "00/02", "crt": "10:30" },
+    { "reg": "VPCYW", "operator": "AVIA", "arr": "13:20", "dep": "", "route": "ZSSS – VRDA", "pax": "07/00", "crt": "" },
+    { "reg": "TCTSS", "operator": "AVIA", "arr": "", "dep": "14:30", "route": "LIMJ – VRDA – VRMM", "pax": "00/00", "crt": "13:00" }
+  ],
+  "overnightParking": ["RA73558", "DAIRI", "VPCYW"],
+  "specialInstructions": [
+    "<strong>TCALG:</strong> AVIA Fuel / NOKU 08:30",
+    "<strong>UPEM025:</strong> JETEX / FINI PALACE 09:00",
+    "<strong>CNGMT:</strong> JETEX / SUNSIYAM 09:00 / NOKU 08:30",
+    "<strong>UPEM016:</strong> JETEX / VELAA 10:00 / FINI PALACE 09:50",
+    "<strong>UPEM022:</strong> JETEX / NOKU 10:30",
+    "<strong>TCTSS:</strong> UCIG / NOKU 13:00",
+    "<strong>OK-SIX:</strong> Aircraft visit / CRT 09:30"
+  ]
+}

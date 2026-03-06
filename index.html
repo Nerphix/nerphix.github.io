@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>Maafaru International – Live Movement Log 06 MAR 2026</title>
+    <title>Maafaru International – 07 MAR 2026</title>
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
 
         .table-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             background: white;
             border-radius: 28px;
             padding: 20px 16px 24px 16px;
@@ -74,7 +74,6 @@
             font-weight: 600;
         }
 
-        /* table wrapper - horizontal scroll on small screens */
         .table-scroll {
             overflow-x: auto;
             margin: 18px 0 22px;
@@ -86,7 +85,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px;
+            min-width: 1000px;
             font-size: 0.95rem;
             font-weight: 500;
         }
@@ -149,7 +148,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===== STATUS BADGES ===== */
         .status-badge {
             display: inline-block;
             padding: 4px 10px;
@@ -159,15 +157,8 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
             white-space: nowrap;
-            min-width: 60px;
+            min-width: 70px;
             text-align: center;
-        }
-
-        .badge-live {
-            background: #ff3b3b;
-            color: white;
-            animation: pulse-live 1.2s infinite;
-            box-shadow: 0 0 10px #ff3b3b;
         }
 
         .badge-soon {
@@ -176,10 +167,33 @@
             animation: pulse-soon 1.5s infinite;
         }
 
-        .badge-finished {
+        .badge-landed {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge-ongoing {
+            background: #17a2b8;
+            color: white;
+            animation: pulse-ongoing 1.5s infinite;
+        }
+
+        .badge-departed {
             background: #6c757d;
             color: white;
-            opacity: 0.9;
+        }
+
+        .badge-departed-soon {
+            background: #fd7e14;
+            color: white;
+            animation: pulse-soon 1.5s infinite;
+        }
+
+        .badge-live {
+            background: #ff3b3b;
+            color: white;
+            animation: pulse-live 1.2s infinite;
+            box-shadow: 0 0 10px #ff3b3b;
         }
 
         @keyframes pulse-live {
@@ -194,7 +208,12 @@
             100% { opacity: 1; }
         }
 
-        /* Row status styles */
+        @keyframes pulse-ongoing {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; background-color: #138496; }
+            100% { opacity: 1; }
+        }
+
         .row-finished td {
             background-color: #e9ecef !important;
             color: #6c757d !important;
@@ -345,144 +364,34 @@
     <div class="header">
         <h1>
             Maafaru International Airport Schedule
-            <small>06 MAR 2026</small>
+            <small>07 MAR 2026</small>
             <span class="live-indicator-header">
                 <span class="live-dot"></span> LIVE
             </span>
         </h1>
         <div class="sub">
-            <span><strong>Friday</strong> · Daily Movement Log</span>
+            <span><strong>Saturday</strong> · Daily Movement Log</span>
             <span class="location">📍 VRDA – Maafaru, Maldives</span>
         </div>
     </div>
 
-    <!-- SINGLE TABLE -->
+    <!-- TABLE -->
     <div class="table-scroll">
         <table id="movementTable">
             <thead>
                 <tr>
                     <th>Reg</th>
-                    <th>Time (LT)</th>
                     <th>Operator</th>
+                    <th>Arr Time (LT)</th>
+                    <th>Dep Time (LT)</th>
                     <th>Route</th>
                     <th>PAX</th>
                     <th>CRT</th>
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- CNGMT 06:30 arrival -->
-                <tr data-time="06:30" data-type="arrival">
-                    <td class="reg">CNGMT</td>
-                    <td><strong>06:30</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>HELX – VRDA</strong></td>
-                    <td><span class="pax">00/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- TCDDD 09:00 departure -->
-                <tr data-time="09:00" data-type="departure">
-                    <td class="reg">TCDDD</td>
-                    <td><strong>09:00</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>LEMD – VRDA – LSZH</strong></td>
-                    <td><span class="pax">00/04</span></td>
-                    <td><span class="crt-badge">07:00 LT</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- RA73544 11:00 departure -->
-                <tr data-time="11:00" data-type="departure">
-                    <td class="reg">RA73544</td>
-                    <td><strong>11:00</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>UUWW – VRDA – URSS</strong></td>
-                    <td><span class="pax">00/05</span></td>
-                    <td><span class="crt-badge">08:30 LT</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- TCTSS 09:30 arrival -->
-                <tr data-time="09:30" data-type="arrival">
-                    <td class="reg">TCTSS</td>
-                    <td><strong>09:30</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>LIMJ – VRDA</strong></td>
-                    <td><span class="pax">06/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- TCALG 10:00 arrival -->
-                <tr data-time="10:00" data-type="arrival">
-                    <td class="reg">TCALG</td>
-                    <td><strong>10:00</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>UUWW – VRDA</strong></td>
-                    <td><span class="pax">03/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- N588SE 10:05 arrival -->
-                <tr data-time="10:05" data-type="arrival">
-                    <td class="reg">N588SE</td>
-                    <td><strong>10:05</strong></td>
-                    <td><strong>ZC</strong></td>
-                    <td><strong>WSSL – VRDA</strong></td>
-                    <td><span class="pax">04/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- UPEM025 14:35 arrival -->
-                <tr data-time="14:35" data-type="arrival">
-                    <td class="reg">UPEM025</td>
-                    <td><strong>14:35</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>UAAA – VRDA – UAAA</strong></td>
-                    <td><span class="pax">04/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-
-		<!-- P4OWN 18:39 arrival -->
-                <tr data-time="18:39" data-type="arrival">
-                    <td class="reg">P4OWN</td>
-                    <td><strong>18:39/18:45</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>OMDW – VRDA – OMDW</strong></td>
-                    <td><span class="pax">12/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-                <!-- UPEM022 19:30 arrival -->
-                <tr data-time="19:30" data-type="arrival">
-                    <td class="reg">UPEM022</td>
-                    <td><strong>19:30</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>UAAA – VRDA</strong></td>
-                    <td><span class="pax">00/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
-              <!-- SP-VDH 19:40 arrival -->
-                <tr data-time="19:40" data-type="arrival">
-                    <td class="reg">SP-VDH</td>
-                    <td><strong>19:40</strong></td>
-                    <td><strong>FSM</strong></td>
-                    <td><strong>OOMS – VRDA</strong></td>
-                    <td><span class="pax">07/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
- 
-                <!-- UPEM016 20:15 arrival -->
-                <tr data-time="20:15" data-type="arrival">
-                    <td class="reg">UPEM016</td>
-                    <td><strong>20:15</strong></td>
-                    <td><strong>AVIA</strong></td>
-                    <td><strong>UZTT – VRDA</strong></td>
-                    <td><span class="pax">00/00</span></td>
-                    <td><span class="crt-empty">—</span></td>
-                    <td class="status-cell"></td>
-                </tr>
+            <tbody id="tableBody">
+                <!-- Rows will be generated by JavaScript -->
             </tbody>
         </table>
     </div>
@@ -491,42 +400,152 @@
     <div class="summary">
         <h3>📋 Quick Summary</h3>
         <div class="stats-row">
-            <div class="stat">✈️ Arrivals: <strong>10</strong></div>
-            <div class="stat">🛫 Departures: <strong>3</strong></div>
+            <div class="stat">✈️ Arrivals: <strong id="totalArrivals">0</strong></div>
+            <div class="stat">🛫 Departures: <strong id="totalDepartures">0</strong></div>
         </div>
         <div><strong style="color: #003f54;">🛑 Overnight parking (VRDA):</strong></div>
-        <div class="parking">
-            <span class="parking-tag">TCTSS</span>
-            <span class="parking-tag">TCALG</span>
-            <span class="parking-tag">N588SE</span>
-            <span class="parking-tag">UPEM022</span>
-            <span class="parking-tag">SP-VDH</span>
-            <span class="parking-tag">9HVEGA</span>
-            <span class="parking-tag">UPEM016</span>
-            <span class="parking-tag" style="background:#fff1d6;">CNGMT (late dep)</span>
-        </div>
+        <div class="parking" id="parkingContainer"></div>
 
         <!-- SPECIAL INSTRUCTIONS -->
         <div class="special">
             <h4>✈️ Special Instructions</h4>
-            <div class="special-items">
-                <span class="special-item"><strong>RA73544:</strong> NOKU catering 08:30 / WFS C/O AVIA</span>
-                <span class="special-item"><strong>TCDDD:</strong> WFS Fuel / Catering TBA</span>
-                <span class="special-item"><strong>TCTSS:</strong> UCIG C/O AVIA</span>
-                <span class="special-item"><strong>TCALG:</strong> AVIA Fuel</span>
-            </div>
+            <div class="special-items" id="specialContainer"></div>
         </div>
     </div>
 
     <div class="footer">
-        Maafaru International Airport (VRDA) · 06 March 2026 · Movement Schedule · <strong>🔴 Live · 🟠 Soon · ⚪ Finished</strong>
+        Maafaru International Airport (VRDA) · 07 March 2026 · Movement Schedule · <strong>🟠 Soon · 🟢 Landed · 🔵 Ongoing · ⚫ Departed</strong>
     </div>
 </div>
 
-<!-- ========== LIVE STATUS JAVASCRIPT ========== -->
 <script>
 (function() {
+    // ==================== DATA SECTION ====================
+    const scheduleInfo = {
+        date: "07 MAR 2026",
+        day: "Saturday",
+        footerDate: "07 March 2026"
+    };
+
+    // Movements data – in chronological order (arr, crt, dep)
+    const movements = [
+        { reg: "RA73558", operator: "AVIA", arr: "08:45", dep: "", route: "UZSS – VRDA", pax: "13/00", crt: "" },
+        { reg: "TCALG", operator: "AVIA", arr: "", dep: "10:15", route: "UUWW – VRDA – OMAD", pax: "00/00", crt: "08:30 LT" },
+        { reg: "CNGMT", operator: "AVIA", arr: "", dep: "11:00", route: "HELX – VRDA – HELX", pax: "00/03", crt: "08:30 LT" },
+        { reg: "UPEM025", operator: "AVIA", arr: "", dep: "10:30", route: "UAAA – VRDA – OOMS", pax: "00/00", crt: "09:00 LT" },
+        { reg: "OK-SIX", operator: "FSM", arr: "", dep: "", route: "Crew Aircraft Visit", pax: "—", crt: "09:30 LT" },
+        { reg: "UPEM016", operator: "AVIA", arr: "", dep: "12:00", route: "UZTT – VRDA – UZTP", pax: "00/08", crt: "09:50 LT" },
+        { reg: "DAIRI", operator: "AVIA", arr: "10:05", dep: "", route: "EBBR – VRDA", pax: "08/00", crt: "" },
+        { reg: "UPEM022", operator: "AVIA", arr: "", dep: "13:00", route: "UAAA – VRDA – UAAA", pax: "00/02", crt: "10:30 LT" },
+        { reg: "VPCYW", operator: "AVIA", arr: "13:20", dep: "", route: "ZSSS – VRDA", pax: "07/00", crt: "" },
+        { reg: "TCTSS", operator: "AVIA", arr: "", dep: "14:30", route: "LIMJ – VRDA – VRMM", pax: "00/00", crt: "13:00 LT" }
+    ];
+
+    const overnightParking = ["RA73558", "DAIRI", "VPCYW"];
+
+    const specialInstructions = [
+        "<strong>TCALG:</strong> AVIA Fuel confirmed / NOKU catering 08:30 LT",
+        "<strong>UPEM025:</strong> JETEX fuel / Crew FINI PALACE 09:00 LT",
+        "<strong>CNGMT:</strong> JETEX fuel / SUNSIYAM catering 09:00 LT / Crew NOKU 08:30 LT",
+        "<strong>UPEM016:</strong> JETEX fuel confirmed / VELAA catering 10:00 LT / Crew FINI PALACE 09:50 LT",
+        "<strong>UPEM022:</strong> JETEX fuel / Crew NOKU 10:30 LT",
+        "<strong>TCTSS:</strong> UCIG C/O AVIA / NOKU catering 13:00 LT / Crew NOKU 13:00 LT",
+        "<strong>OK-SIX (FSM):</strong> Crew aircraft visit – refuel, APU/engine tests (1-2 hrs) – CRT 09:30 LT"
+    ];
+
+    // ==================== GENERATE TABLE ====================
+    const tableBody = document.getElementById('tableBody');
+    let arrivalsCount = 0;
+    let departuresCount = 0;
+
+    movements.forEach(m => {
+        // Count arrivals/departures
+        if (m.arr && !m.dep) arrivalsCount++;
+        else if (!m.arr && m.dep) departuresCount++;
+        else if (m.arr && m.dep) {
+            arrivalsCount++;
+            departuresCount++;
+        }
+
+        const row = document.createElement('tr');
+        row.setAttribute('data-reg', m.reg);
+        if (m.arr) row.setAttribute('data-arr', m.arr);
+        if (m.dep) row.setAttribute('data-dep', m.dep);
+        if (m.crt) row.setAttribute('data-crt', m.crt);
+
+        // Reg
+        const regCell = document.createElement('td');
+        regCell.className = 'reg';
+        regCell.innerHTML = `<strong>${m.reg}</strong>`;
+        row.appendChild(regCell);
+
+        // Operator
+        const opCell = document.createElement('td');
+        opCell.innerHTML = `<strong>${m.operator}</strong>`;
+        row.appendChild(opCell);
+
+        // Arr Time
+        const arrCell = document.createElement('td');
+        arrCell.innerHTML = m.arr ? `<strong>${m.arr}</strong>` : '—';
+        row.appendChild(arrCell);
+
+        // Dep Time
+        const depCell = document.createElement('td');
+        depCell.innerHTML = m.dep ? `<strong>${m.dep}</strong>` : '—';
+        row.appendChild(depCell);
+
+        // Route
+        const routeCell = document.createElement('td');
+        routeCell.innerHTML = `<strong>${m.route}</strong>`;
+        row.appendChild(routeCell);
+
+        // PAX
+        const paxCell = document.createElement('td');
+        paxCell.innerHTML = m.pax === '—' ? '—' : `<span class="pax">${m.pax}</span>`;
+        row.appendChild(paxCell);
+
+        // CRT
+        const crtCell = document.createElement('td');
+        if (m.crt) {
+            crtCell.innerHTML = `<span class="crt-badge">${m.crt}</span>`;
+        } else {
+            crtCell.innerHTML = '<span class="crt-empty">—</span>';
+        }
+        row.appendChild(crtCell);
+
+        // Status cell
+        const statusCell = document.createElement('td');
+        statusCell.className = 'status-cell';
+        row.appendChild(statusCell);
+
+        tableBody.appendChild(row);
+    });
+
+    // Update summary counts
+    document.getElementById('totalArrivals').textContent = arrivalsCount;
+    document.getElementById('totalDepartures').textContent = departuresCount;
+
+    // Parking tags
+    const parkingContainer = document.getElementById('parkingContainer');
+    overnightParking.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'parking-tag';
+        span.textContent = tag;
+        parkingContainer.appendChild(span);
+    });
+
+    // Special instructions
+    const specialContainer = document.getElementById('specialContainer');
+    specialInstructions.forEach(inst => {
+        const span = document.createElement('span');
+        span.className = 'special-item';
+        span.innerHTML = inst;
+        specialContainer.appendChild(span);
+    });
+
+    // ==================== LIVE STATUS UPDATER ====================
     function timeToMinutes(timeStr) {
+        if (!timeStr) return null;
         const [hours, minutes] = timeStr.split(':').map(Number);
         return hours * 60 + minutes;
     }
@@ -541,88 +560,64 @@
     }
 
     function updateMovementStatus() {
-        const table = document.getElementById('movementTable');
-        if (!table) return;
-
-        const rows = table.querySelectorAll('tbody tr');
+        const rows = document.querySelectorAll('#movementTable tbody tr');
         if (rows.length === 0) return;
 
         const currentMinutes = getCurrentMaldivesTime();
         
-        // Parse all rows with time
-        const movements = [];
         rows.forEach(row => {
-            const timeCell = row.querySelector('td:nth-child(2)');
-            if (!timeCell) return;
-            
-            const timeText = timeCell.textContent || timeCell.innerText;
-            const timeMatch = timeText.match(/(\d{2}:\d{2})/);
-            
-            if (timeMatch) {
-                const timeStr = timeMatch[1];
-                const minutes = timeToMinutes(timeStr);
-                movements.push({
-                    element: row,
-                    timeStr: timeStr,
-                    minutes: minutes
-                });
-            }
-        });
-
-        movements.sort((a, b) => a.minutes - b.minutes);
-
-        // Reset all rows
-        rows.forEach(row => {
-            row.classList.remove('row-finished');
             const statusCell = row.querySelector('.status-cell');
-            if (statusCell) statusCell.innerHTML = '';
-        });
-
-        // Mark finished movements (times before current time)
-        movements.forEach(movement => {
-            if (movement.minutes < currentMinutes) {
-                movement.element.classList.add('row-finished');
-                const statusCell = movement.element.querySelector('.status-cell');
-                if (statusCell) {
-                    statusCell.innerHTML = '<span class="status-badge badge-finished">FINISHED</span>';
+            if (!statusCell) return;
+            
+            statusCell.innerHTML = '';
+            row.classList.remove('row-finished');
+            
+            const arrTime = row.getAttribute('data-arr');
+            const depTime = row.getAttribute('data-dep');
+            const crtAttr = row.getAttribute('data-crt');
+            
+            let crtMinutes = null;
+            if (crtAttr) {
+                const crtMatch = crtAttr.match(/(\d{2}:\d{2})/);
+                if (crtMatch) crtMinutes = timeToMinutes(crtMatch[1]);
+            }
+            
+            const arrMinutes = arrTime ? timeToMinutes(arrTime) : null;
+            const depMinutes = depTime ? timeToMinutes(depTime) : null;
+            
+            // ===== ARRIVAL STATUS =====
+            if (arrMinutes) {
+                if (currentMinutes < arrMinutes && arrMinutes - currentMinutes <= 30) {
+                    // Soon (within 30 mins before arrival)
+                    statusCell.innerHTML = '<span class="status-badge badge-soon">🟠 SOON</span>';
+                }
+                else if (currentMinutes >= arrMinutes && currentMinutes < arrMinutes + 180) {
+                    // Landed (within 3 hours after arrival)
+                    statusCell.innerHTML = '<span class="status-badge badge-landed">🟢 LANDED</span>';
+                }
+                else if (currentMinutes >= arrMinutes + 180) {
+                    // Finished (after 3 hours)
+                    statusCell.innerHTML = '<span class="status-badge badge-departed">⚫ FINISHED</span>';
+                    row.classList.add('row-finished');
                 }
             }
-        });
-
-        // Find current/next movement (first not finished)
-        let foundCurrent = false;
-        for (let i = 0; i < movements.length; i++) {
-            if (movements[i].minutes < currentMinutes) continue;
             
-            const movement = movements[i];
-            const statusCell = movement.element.querySelector('.status-cell');
-            if (!statusCell) continue;
-
-            const timeDiff = movement.minutes - currentMinutes;
-
-            if (timeDiff === 0) {
-                // Exactly now - LIVE
-                statusCell.innerHTML = '<span class="status-badge badge-live">🔴 LIVE</span>';
-                foundCurrent = true;
-                break;
-            } else if (timeDiff > 0 && timeDiff <= 30) {
-                // Within 30 minutes - SOON
-                statusCell.innerHTML = '<span class="status-badge badge-soon">🟠 SOON</span>';
-                foundCurrent = true;
-                break;
-            } else {
-                // Future movement beyond 30 minutes - no badge yet
-                // But we stop here because this is the next upcoming
-                break;
+            // ===== DEPARTURE STATUS =====
+            if (depMinutes && crtMinutes) {
+                if (currentMinutes < crtMinutes && crtMinutes - currentMinutes <= 30) {
+                    // Soon before CRT
+                    statusCell.innerHTML = '<span class="status-badge badge-soon">🟠 SOON</span>';
+                }
+                else if (currentMinutes >= crtMinutes && currentMinutes < depMinutes) {
+                    // Ongoing (between CRT and departure)
+                    statusCell.innerHTML = '<span class="status-badge badge-ongoing">🔵 ONGOING</span>';
+                }
+                else if (currentMinutes >= depMinutes) {
+                    // Departed
+                    statusCell.innerHTML = '<span class="status-badge badge-departed">⚫ DEPARTED</span>';
+                    row.classList.add('row-finished');
+                }
             }
-        }
-    }
-
-    // Run immediately and every 60 seconds
-    updateMovementStatus();
-    setInterval(updateMovementStatus, 60000);
-})();
-</script>
-</body>
-
-</html>
+            else if (depMinutes && !crtMinutes) {
+                // Departure with no CRT
+                if (currentMinutes < depMinutes && depMinutes - currentMinute

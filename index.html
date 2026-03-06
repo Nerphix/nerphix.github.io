@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maafaru International – 07 March 2026</title>
     <style>
         * {
@@ -15,51 +15,49 @@
         body {
             background: #d9e4ec;
             min-height: 100vh;
-            padding: 16px 12px;
+            padding: 20px;
             display: flex;
             justify-content: center;
         }
 
         .container {
-            max-width: 600px;
             width: 100%;
+            max-width: 1400px;
         }
 
-        /* Header Card */
+        /* Header */
         .header-card {
             background: white;
             border-radius: 28px;
-            padding: 22px 20px;
-            margin-bottom: 20px;
+            padding: 22px 25px;
+            margin-bottom: 25px;
             box-shadow: 0 8px 24px rgba(0, 40, 60, 0.12);
             border: 1px solid rgba(255,255,255,0.7);
         }
 
         .airport-name {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #003546;
             letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .badge-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .badge {
             background: #1f5f73;
             color: white;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            padding: 5px 16px;
+            padding: 6px 18px;
             border-radius: 40px;
-            letter-spacing: 0.3px;
         }
 
         .badge.orange {
@@ -69,9 +67,9 @@
         .live-indicator {
             background: #1b5f77;
             color: white;
-            padding: 5px 16px;
+            padding: 6px 18px;
             border-radius: 40px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
@@ -84,7 +82,6 @@
             background: #7eff7e;
             border-radius: 50%;
             animation: blink 1.5s infinite;
-            box-shadow: 0 0 8px #7eff7e;
         }
 
         @keyframes blink {
@@ -95,31 +92,125 @@
         .location {
             color: #1e4f60;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
-        .location-icon::before {
-            content: "📍";
-            margin-right: 4px;
+        .current-time {
+            background: #e9f2f9;
+            border-radius: 40px;
+            padding: 8px 20px;
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004c66;
+            display: inline-block;
+            border: 1px solid #b9d3e4;
         }
 
-        .location-code {
-            background: #d0e6f2;
-            padding: 4px 14px;
+        .date-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 40px;
+            padding: 8px 20px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #856404;
+            display: inline-block;
+        }
+
+        /* Table View (Desktop) */
+        .table-wrapper {
+            background: white;
+            border-radius: 20px;
+            border: 2px solid #1f4d5d;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .desktop-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+            font-size: 0.95rem;
+        }
+
+        .desktop-table th {
+            background: #1f4d5d;
+            color: white;
+            font-weight: 600;
+            padding: 15px 12px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            border: 1px solid #2f6377;
+        }
+
+        .desktop-table td {
+            padding: 12px 10px;
+            border: 1px solid #c2dae7;
+            color: #103946;
+        }
+
+        .desktop-table tr:nth-child(even) {
+            background: #f6fbfe;
+        }
+
+        .desktop-table .reg {
+            font-weight: 700;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
         }
 
-        /* Movement List */
+        .status-soon { 
+            background: #ffa500; 
+            color: white; 
+            animation: pulse 1.5s infinite; 
+        }
+        .status-landed { 
+            background: #28a745; 
+            color: white; 
+        }
+        .status-ongoing { 
+            background: #17a2b8; 
+            color: white; 
+            animation: pulse 1.5s infinite; 
+        }
+        .status-departed { 
+            background: #6c757d; 
+            color: white; 
+        }
+        .status-future { 
+            background: #6c757d; 
+            color: white; 
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.9; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.9; }
+        }
+
+        /* Mobile Cards */
         .movement-list {
             display: flex;
             flex-direction: column;
             gap: 14px;
             margin: 20px 0;
+            display: none;
         }
 
         .movement-card {
@@ -128,7 +219,6 @@
             padding: 18px 16px;
             border: 1px solid #c7dde9;
             box-shadow: 0 5px 15px rgba(0, 40, 55, 0.06);
-            transition: all 0.2s;
         }
 
         .card-header {
@@ -140,19 +230,18 @@
             gap: 10px;
         }
 
-        .reg {
+        .reg-mobile {
             font-size: 1.6rem;
             font-weight: 800;
-            font-family: 'Courier New', monospace;
+            font-family: monospace;
             color: #003546;
         }
 
-        .time-badge {
+        .time-mobile {
             background: #e2edf5;
             padding: 6px 18px;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 1rem;
             color: #0b4d63;
             border: 1px solid #b9d3e4;
         }
@@ -165,7 +254,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            align-items: flex-start;
         }
 
         .detail-item {
@@ -179,7 +267,6 @@
             text-transform: uppercase;
             color: #54778b;
             font-weight: 600;
-            letter-spacing: 0.3px;
         }
 
         .detail-value {
@@ -192,7 +279,7 @@
             background: #d9eaf3;
             padding: 4px 14px;
             border-radius: 30px;
-            font-family: 'Courier New', monospace;
+            font-family: monospace;
             font-weight: 700;
         }
 
@@ -205,46 +292,7 @@
             font-weight: 600;
         }
 
-        .status-chip {
-            padding: 4px 14px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-        }
-
-        .status-soon {
-            background: #ffa500;
-            color: white;
-            animation: pulse 1.5s infinite;
-        }
-        .status-landed {
-            background: #28a745;
-            color: white;
-        }
-        .status-ongoing {
-            background: #17a2b8;
-            color: white;
-            animation: pulse 1.5s infinite;
-        }
-        .status-departed {
-            background: #6c757d;
-            color: white;
-        }
-        .status-default {
-            background: #e9ecef;
-            color: #495057;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.9; }
-            50% { opacity: 0.6; }
-            100% { opacity: 0.9; }
-        }
-
-        .route {
+        .route-mobile {
             font-size: 0.95rem;
             color: #1c5b72;
             background: white;
@@ -252,15 +300,14 @@
             border-radius: 40px;
             border: 1px dashed #99bfd2;
             display: inline-block;
-            width: auto;
         }
 
-        /* Summary Card */
+        /* Summary Cards */
         .summary-card {
             background: #f0f7fc;
             border-radius: 26px;
-            padding: 22px 20px;
-            margin: 24px 0 18px;
+            padding: 22px 25px;
+            margin: 25px 0 20px;
             border: 1px solid #b7d1e0;
         }
 
@@ -269,24 +316,20 @@
             color: #124c5e;
             font-size: 1.2rem;
             margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .stats-row {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             flex-wrap: wrap;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .stat-bubble {
             background: white;
             border-radius: 50px;
-            padding: 10px 24px;
+            padding: 10px 25px;
             border: 1px solid #aac9dd;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
             font-weight: 600;
         }
 
@@ -297,43 +340,28 @@
             margin-right: 5px;
         }
 
-        .parking-tags {
+        .parking-tags, .special-items {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin: 12px 0 5px;
+            margin-top: 10px;
         }
 
         .parking-tag {
             background: white;
             border-radius: 40px;
             padding: 6px 20px;
-            font-family: 'Courier New', monospace;
+            font-family: monospace;
             font-weight: 700;
             border: 1px solid #92b9cf;
-            font-size: 0.9rem;
         }
 
         .special-card {
             background: white;
             border-radius: 26px;
-            padding: 22px 20px;
-            margin: 18px 0;
+            padding: 22px 25px;
+            margin: 20px 0;
             border-left: 6px solid #1f8aae;
-            box-shadow: 0 8px 18px rgba(0, 45, 60, 0.06);
-        }
-
-        .special-title {
-            font-weight: 700;
-            color: #016985;
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-        }
-
-        .special-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
         }
 
         .special-item {
@@ -344,33 +372,28 @@
             font-weight: 500;
             color: #05485f;
             border: 1px solid #b7d6ea;
-            flex: 1 0 auto;
-        }
-
-        .special-item strong {
-            font-weight: 800;
         }
 
         .footer {
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #6f96a8;
-            margin: 24px 0 12px;
+            margin: 25px 0 10px;
         }
 
         .legend {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px 20px;
+            gap: 15px 25px;
             justify-content: center;
-            margin: 16px 0 8px;
-            font-size: 0.8rem;
+            margin: 20px 0;
+            font-size: 0.85rem;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .legend-color {
@@ -382,27 +405,65 @@
         .legend-landed { background: #28a745; }
         .legend-ongoing { background: #17a2b8; }
         .legend-departed { background: #6c757d; }
+        .legend-future { background: #6c757d; opacity: 0.7; }
+
+        /* Responsive */
+        @media (max-width: 1023px) {
+            .table-wrapper {
+                display: none;
+            }
+            .movement-list {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container" id="app">
-        <!-- Header Card -->
+    <div class="container">
+        <!-- Header -->
         <div class="header-card">
-            <div class="airport-name">Maafaru International</div>
+            <div class="airport-name">Maafaru International Airport</div>
             <div class="badge-row">
-                <span class="badge">07 MAR 2026</span>
+                <span class="badge">07 MARCH 2026</span>
                 <span class="badge orange">SATURDAY</span>
                 <span class="live-indicator">
-                    <span class="live-dot"></span> LIVE
+                    <span class="live-dot"></span> PREVIEW
                 </span>
             </div>
             <div class="location">
-                <span class="location-icon"></span> VRDA – Maafaru, Maldives
-                <span class="location-code">🇲🇻</span>
+                <span>📍 VRDA – Maafaru, Maldives</span>
+                <span class="location-code">🇲🇻 UTC+5</span>
+            </div>
+            <div class="current-time" id="currentTimeDisplay">
+                Loading current time...
+            </div>
+            <div class="date-notice" id="dateNotice">
+                ⏰ Today is 6 March 2026 · Showing schedule for 7 March 2026
             </div>
         </div>
 
-        <!-- Movement Cards Container -->
+        <!-- DESKTOP TABLE VIEW -->
+        <div class="table-wrapper">
+            <table class="desktop-table" id="desktopTable">
+                <thead>
+                    <tr>
+                        <th>Reg</th>
+                        <th>Operator</th>
+                        <th>Arr Time</th>
+                        <th>Dep Time</th>
+                        <th>Route</th>
+                        <th>PAX</th>
+                        <th>CRT</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Filled by JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MOBILE CARD VIEW -->
         <div class="movement-list" id="movementList"></div>
 
         <!-- Summary Card -->
@@ -413,21 +474,23 @@
             <div class="parking-tags" id="parkingTags"></div>
         </div>
 
-        <!-- Special Instructions Card -->
+        <!-- Special Instructions -->
         <div class="special-card">
-            <div class="special-title">✈️ Special Instructions</div>
+            <div class="summary-title">✈️ Special Instructions</div>
             <div class="special-items" id="specialItems"></div>
         </div>
 
-        <!-- Legend & Footer -->
+        <!-- Legend -->
         <div class="legend">
-            <div class="legend-item"><span class="legend-color legend-soon"></span> SOON (30min)</div>
-            <div class="legend-item"><span class="legend-color legend-landed"></span> LANDED</div>
-            <div class="legend-item"><span class="legend-color legend-ongoing"></span> ONGOING</div>
-            <div class="legend-item"><span class="legend-color legend-departed"></span> FINISHED</div>
+            <div class="legend-item"><span class="legend-color legend-soon"></span> SOON (next 30min)</div>
+            <div class="legend-item"><span class="legend-color legend-landed"></span> LANDED (first 3hrs)</div>
+            <div class="legend-item"><span class="legend-color legend-ongoing"></span> ONGOING (CRT→DEP)</div>
+            <div class="legend-item"><span class="legend-color legend-departed"></span> DEPARTED/FINISHED</div>
+            <div class="legend-item"><span class="legend-color legend-future"></span> FUTURE (tomorrow)</div>
         </div>
+
         <div class="footer">
-            Maafaru International Airport (VRDA) · 07 March 2026 · Auto-refreshes every minute
+            Maafaru International Airport (VRDA) · Schedule for 07 March 2026 · Auto-refreshes every 30 seconds
         </div>
     </div>
 
@@ -448,7 +511,7 @@
             ];
 
             const overnightParking = ["RA73558", "DAIRI", "VPCYW"];
-
+            
             const specialInstructions = [
                 "<strong>TCALG:</strong> AVIA Fuel / NOKU 08:30",
                 "<strong>UPEM025:</strong> JETEX / FINI PALACE 09:00",
@@ -459,87 +522,193 @@
                 "<strong>OK-SIX:</strong> Aircraft visit / CRT 09:30"
             ];
 
-            // ==================== UTILITIES ====================
-            function timeToMinutes(t) {
-                if (!t) return null;
-                const parts = t.split(':');
-                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
-            }
-
-            function getMaldivesTime() {
+            // ==================== DATE COMPARISON ====================
+            // Schedule date: 7 March 2026
+            const SCHEDULE_DATE = new Date(2026, 2, 7); // March 7, 2026 (month is 0-indexed)
+            
+            // Today's date: 6 March 2026 (for preview mode)
+            const TODAY = new Date(2026, 2, 6); // March 6, 2026
+            
+            function getCurrentMaldivesTime() {
+                // Use today's date (6 March 2025) but current time of day
                 const now = new Date();
-                const utc = now.getUTCHours() * 60 + now.getUTCMinutes();
-                let mld = utc + 5 * 60;
-                if (mld >= 1440) mld -= 1440;
-                return mld;
+                
+                // Get current UTC time
+                const utcHours = now.getUTCHours();
+                const utcMinutes = now.getUTCMinutes();
+                
+                // Convert to Maldives time (UTC+5)
+                let mldHours = utcHours + 5;
+                let mldMinutes = utcMinutes;
+                
+                // Handle day rollover
+                if (mldHours >= 24) {
+                    mldHours -= 24;
+                }
+                
+                const totalMinutes = mldHours * 60 + mldMinutes;
+                const formatted = `${mldHours.toString().padStart(2, '0')}:${mldMinutes.toString().padStart(2, '0')}`;
+                
+                return {
+                    hours: mldHours,
+                    minutes: mldMinutes,
+                    totalMinutes: totalMinutes,
+                    formatted: formatted,
+                    date: TODAY,
+                    dateStr: '6 March 2026'
+                };
             }
 
-            function getStatus(reg, arr, dep, crt) {
-                const now = getMaldivesTime();
+            function timeToMinutes(timeStr) {
+                if (!timeStr) return null;
+                const [hours, minutes] = timeStr.split(':').map(Number);
+                return hours * 60 + minutes;
+            }
+
+            function getStatus(arr, dep, crt) {
+                const now = getCurrentMaldivesTime();
+                
+                // CRITICAL: Compare dates first
+                // If schedule date is AFTER today, all movements are in the future
+                if (SCHEDULE_DATE > TODAY) {
+                    return { text: "FUTURE", class: "status-future" };
+                }
+                
+                // If schedule date is BEFORE today, all are finished
+                if (SCHEDULE_DATE < TODAY) {
+                    return { text: "PAST", class: "status-departed" };
+                }
+                
+                // If schedule date is TODAY, calculate status based on time
+                // This code won't run for our preview since dates don't match
+                
+                const nowMinutes = now.totalMinutes;
                 const arrMin = arr ? timeToMinutes(arr) : null;
                 const depMin = dep ? timeToMinutes(dep) : null;
                 const crtMin = crt ? timeToMinutes(crt) : null;
 
                 // Arrival only
                 if (arrMin && !depMin) {
-                    if (now < arrMin && arrMin - now <= 30) return { text: "SOON", class: "status-soon" };
-                    if (now >= arrMin && now < arrMin + 180) return { text: "LANDED", class: "status-landed" };
-                    if (now >= arrMin + 180) return { text: "FINISHED", class: "status-departed" };
+                    if (nowMinutes < arrMin && (arrMin - nowMinutes) <= 30) 
+                        return { text: "SOON", class: "status-soon" };
+                    if (nowMinutes >= arrMin && nowMinutes < (arrMin + 180)) 
+                        return { text: "LANDED", class: "status-landed" };
+                    if (nowMinutes >= (arrMin + 180)) 
+                        return { text: "FINISHED", class: "status-departed" };
                 }
 
                 // Departure with CRT
                 if (depMin && crtMin) {
-                    if (now < crtMin && crtMin - now <= 30) return { text: "SOON", class: "status-soon" };
-                    if (now >= crtMin && now < depMin) return { text: "ONGOING", class: "status-ongoing" };
-                    if (now >= depMin) return { text: "DEPARTED", class: "status-departed" };
+                    if (nowMinutes < crtMin && (crtMin - nowMinutes) <= 30) 
+                        return { text: "SOON", class: "status-soon" };
+                    if (nowMinutes >= crtMin && nowMinutes < depMin) 
+                        return { text: "ONGOING", class: "status-ongoing" };
+                    if (nowMinutes >= depMin) 
+                        return { text: "DEPARTED", class: "status-departed" };
                 }
 
                 // Departure without CRT
                 if (depMin && !crtMin) {
-                    if (now < depMin && depMin - now <= 30) return { text: "SOON", class: "status-soon" };
-                    if (now >= depMin) return { text: "DEPARTED", class: "status-departed" };
+                    if (nowMinutes < depMin && (depMin - nowMinutes) <= 30) 
+                        return { text: "SOON", class: "status-soon" };
+                    if (nowMinutes >= depMin) 
+                        return { text: "DEPARTED", class: "status-departed" };
                 }
 
                 // CRT only (OK-SIX)
                 if (!arrMin && !depMin && crtMin) {
-                    if (now < crtMin && crtMin - now <= 30) return { text: "SOON", class: "status-soon" };
-                    if (now >= crtMin && now < crtMin + 180) return { text: "ONGOING", class: "status-ongoing" };
-                    if (now >= crtMin + 180) return { text: "FINISHED", class: "status-departed" };
+                    if (nowMinutes < crtMin && (crtMin - nowMinutes) <= 30) 
+                        return { text: "SOON", class: "status-soon" };
+                    if (nowMinutes >= crtMin && nowMinutes < (crtMin + 180)) 
+                        return { text: "ONGOING", class: "status-ongoing" };
+                    if (nowMinutes >= (crtMin + 180)) 
+                        return { text: "FINISHED", class: "status-departed" };
                 }
 
-                return { text: "—", class: "status-default" };
+                return { text: "—", class: "" };
             }
 
             // ==================== RENDER ====================
             function render() {
-                const movementList = document.getElementById('movementList');
-                const summaryStats = document.getElementById('summaryStats');
-                const parkingTags = document.getElementById('parkingTags');
-                const specialItems = document.getElementById('specialItems');
+                const currentTime = getCurrentMaldivesTime();
+                document.getElementById('currentTimeDisplay').innerHTML = `🕐 Current Time: <strong>${currentTime.formatted}</strong> (${currentTime.dateStr})`;
 
-                // Sort movements by earliest time
+                // Table Body
+                const tableBody = document.getElementById('tableBody');
+                const movementList = document.getElementById('movementList');
+                
+                let arrivals = 0, departures = 0;
+                let tableRows = '';
+                let cardsHtml = '';
+
+                // ===== CORRECT SORTING BY EARLIEST TIME =====
+                // Sort movements by earliest time (CRT, then Arrival, then Departure)
                 const sorted = [...movements].sort((a, b) => {
-                    const ta = a.arr || a.dep || a.crt || "00:00";
-                    const tb = b.arr || b.dep || b.crt || "00:00";
-                    return timeToMinutes(ta) - timeToMinutes(tb);
+                    // Get the earliest time for each movement
+                    const getEarliestTime = (m) => {
+                        const times = [];
+                        // Extract CRT time if it exists (handle "08:30 LT" format)
+                        if (m.crt) {
+                            const crtMatch = m.crt.match(/(\d{2}:\d{2})/);
+                            if (crtMatch) times.push(timeToMinutes(crtMatch[1]));
+                        }
+                        if (m.arr) times.push(timeToMinutes(m.arr));
+                        if (m.dep) times.push(timeToMinutes(m.dep));
+                        return Math.min(...times);
+                    };
+                    
+                    const timeA = getEarliestTime(a);
+                    const timeB = getEarliestTime(b);
+                    
+                    return timeA - timeB;
                 });
 
-                let arrivals = 0, departures = 0;
-                let cardsHtml = '';
+                // Debug: Log the sorted order
+                console.log('Sorted movements:');
+                sorted.forEach(m => {
+                    const times = [];
+                    if (m.crt) times.push(`CRT:${m.crt}`);
+                    if (m.arr) times.push(`ARR:${m.arr}`);
+                    if (m.dep) times.push(`DEP:${m.dep}`);
+                    console.log(`${m.reg}: ${times.join(', ')}`);
+                });
 
                 sorted.forEach(m => {
                     if (m.arr && !m.dep) arrivals++;
                     else if (!m.arr && m.dep) departures++;
                     else if (m.arr && m.dep) { arrivals++; departures++; }
 
-                    const status = getStatus(m.reg, m.arr, m.dep, m.crt);
-                    const displayTime = m.arr || m.dep || '—';
+                    const status = getStatus(m.arr, m.dep, m.crt);
+                    
+                    // Get display time (priority: arrival > departure > CRT)
+                    const displayTime = m.arr || m.dep || (m.crt ? m.crt.replace(' LT', '') : '—');
+                    
+                    // Get route display
+                    let routeDisplay = m.route;
+                    if (m.reg === "OK-SIX") {
+                        routeDisplay = "Crew Aircraft Visit";
+                    }
 
+                    // Table row
+                    tableRows += `
+                        <tr>
+                            <td class="reg">${m.reg}</td>
+                            <td>${m.operator}</td>
+                            <td>${m.arr || '—'}</td>
+                            <td>${m.dep || '—'}</td>
+                            <td>${routeDisplay}</td>
+                            <td>${m.pax}</td>
+                            <td>${m.crt || '—'}</td>
+                            <td><span class="status-badge ${status.class}">${status.text}</span></td>
+                        </tr>
+                    `;
+
+                    // Mobile card
                     cardsHtml += `
                         <div class="movement-card">
                             <div class="card-header">
-                                <span class="reg">${m.reg}</span>
-                                <span class="time-badge">${displayTime}</span>
+                                <span class="reg-mobile">${m.reg}</span>
+                                <span class="time-mobile">${displayTime}</span>
                             </div>
                             <div class="details-grid">
                                 <div class="detail-item">
@@ -553,34 +722,33 @@
                                 ${m.crt ? `
                                 <div class="detail-item">
                                     <span class="detail-label">CRT</span>
-                                    <span class="detail-value crt-chip">${m.crt} LT</span>
+                                    <span class="detail-value crt-chip">${m.crt}</span>
                                 </div>
                                 ` : ''}
                                 <div class="detail-item">
                                     <span class="detail-label">Status</span>
-                                    <span class="detail-value status-chip ${status.class}">${status.text}</span>
+                                    <span class="detail-value status-badge ${status.class}">${status.text}</span>
                                 </div>
                             </div>
-                            <div class="route">${m.route}</div>
+                            <div class="route-mobile">${routeDisplay}</div>
                         </div>
                     `;
                 });
 
+                tableBody.innerHTML = tableRows;
                 movementList.innerHTML = cardsHtml;
-                summaryStats.innerHTML = `
+                
+                document.getElementById('summaryStats').innerHTML = `
                     <div class="stat-bubble"><span class="stat-number">${arrivals}</span> arrivals</div>
                     <div class="stat-bubble"><span class="stat-number">${departures}</span> departures</div>
                 `;
-
-                parkingTags.innerHTML = overnightParking.map(t => `<span class="parking-tag">${t}</span>`).join('');
-                specialItems.innerHTML = specialInstructions.map(s => `<span class="special-item">${s}</span>`).join('');
+                
+                document.getElementById('parkingTags').innerHTML = overnightParking.map(t => `<span class="parking-tag">${t}</span>`).join('');
+                document.getElementById('specialItems').innerHTML = specialInstructions.map(s => `<span class="special-item">${s}</span>`).join('');
             }
 
-            // Initial render
             render();
-
-            // Auto-refresh every 60 seconds
-            setInterval(render, 60000);
+            setInterval(render, 30000);
         })();
     </script>
 </body>

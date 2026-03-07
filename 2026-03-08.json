@@ -1,0 +1,66 @@
+{
+  "schedule": {
+    "date": "08 MAR 2026",
+    "day": "SUNDAY",
+    "isoDate": "2026-03-08",
+    "footerDate": "08 March 2026"
+  },
+  "movements": [
+    {
+      "reg": "VP-CYB",
+      "operator": "Skytours",
+      "arr": "14:20",
+      "dep": "",
+      "route": "ZSSS - VRDA",
+      "pax": "08",
+      "crt": ""
+    },
+    {
+      "reg": "VP-CYW",
+      "operator": "Avia",
+      "arr": "",
+      "dep": "12:00",
+      "route": "ZSSS - VRDA - FNLU",
+      "pax": "06",
+      "crt": "09:15 LT"
+    },
+    {
+      "reg": "N399",
+      "operator": "Avia",
+      "arr": "14:30",
+      "dep": "",
+      "route": "WMKL - VRDA",
+      "pax": "04",
+      "crt": ""
+    },
+    {
+      "reg": "A6-FLH",
+      "operator": "Avia",
+      "arr": "15:00",
+      "dep": "16:00",
+      "route": "VRMM - VRDA - OMDW",
+      "pax": "05",
+      "crt": ""
+    },
+    {
+      "reg": "9H-MBS",
+      "operator": "Avia",
+      "arr": "17:15",
+      "dep": "",
+      "route": "OMAL - VRDA",
+      "pax": "09",
+      "crt": ""
+    }
+  ],
+  "overnightParking": [
+    "VP-CYB",
+    "N399",
+    "9H-MBS"
+  ],
+  "specialInstructions": [
+    "VP-CYW: Crew Sun Siyam 09:15 LT, PAX Velaa, No catering",
+    "N399: PAX Soneva Secret, DEP 14 MAR",
+    "A6-FLH: Ferry from MLE, Catering NOKU 14:00 LT, Delocalize",
+    "9H-MBS: 02 CHD included, DEP 13 MAR"
+  ]
+}
